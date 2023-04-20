@@ -7,6 +7,9 @@ const errorHandler = require("./middleware/errorHandler");
 const cookieParser = require("cookie-parser");
 const cors = require("cors");
 const corsOptions = require("./config/corsOptions");
+
+console.log(process.env.NODE_ENV);
+
 const PORT = process.env.PORT || 3333;
 
 app.use(logger);
