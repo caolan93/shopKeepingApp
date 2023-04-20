@@ -10,6 +10,9 @@ const cookieParser = require("cookie-parser");
 const cors = require("cors");
 const corsOptions = require("./config/corsOptions");
 
+// IMPORT ROUTES
+const userRoutes = require("./routes/userRoutes");
+
 console.log(process.env.NODE_ENV);
 
 connectDB();
@@ -20,9 +23,12 @@ app.use(logger);
 
 app.use("/", express.static(path.join(__dirname, "public")));
 app.use(express.json());
-app.use("/", require("./routes/root"));
 app.use(cookieParser());
 app.use(cors(corsOptions));
+
+// ROUTES
+app.use("/", require("./routes/root"));
+app.use("/user", userRoutes);
 
 app.all("*", (req, res) => {
   res.status(404);
